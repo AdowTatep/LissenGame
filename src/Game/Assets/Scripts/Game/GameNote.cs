@@ -30,7 +30,11 @@ public class GameNote : MonoBehaviour {
     void hitSuccess()
     {
         Destroy(this.gameObject);
-        Music.score += 1;
+        
+        //Set the score
+        //Set the accuracy
+        //Play the particle
+
         //var distanceFromCenter = transform.position - hitbox.transform.position;
 
         //if(distanceFromCenter.z > 1.5)
