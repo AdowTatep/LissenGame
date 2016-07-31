@@ -3,36 +3,15 @@ using System.Collections;
 
 public class GameNote : MonoBehaviour {
 
+    public float moveSpeed = 0.09f;
     public GameObject hitbox;
-    public INote note;
-
-    // Use this for initialization
-    void Start () {
-	
-	}
 
     void FixedUpdate()
     {
         //Movement towards the hitbox object
-        transform.position = Vector3.MoveTowards(transform.position, hitbox.transform.position, 0.09f);
+        transform.position = Vector3.MoveTowards(transform.position, hitbox.transform.position, moveSpeed);
     }
-
     
-    void hitSuccess()
-    {
-        Destroy(this.gameObject);
-
-        //var distanceFromCenter = transform.position - hitbox.transform.position;
-
-        //if(distanceFromCenter.z > 1.5)
-
-    }
-
-    void hitFail()
-    {
-        //Destroy(this);
-    }
-
     //If coliding with the trigger
     void OnTriggerStay(Collider other)
     {
@@ -46,5 +25,19 @@ public class GameNote : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         hitFail();
+    }
+
+    void hitSuccess()
+    {
+        Destroy(this.gameObject);
+        Music.score += 1;
+        //var distanceFromCenter = transform.position - hitbox.transform.position;
+
+        //if(distanceFromCenter.z > 1.5)
+    }
+
+    void hitFail()
+    {
+        //Destroy(this);
     }
 }
